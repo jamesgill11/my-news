@@ -13,8 +13,11 @@ exports.fetchArticlesByArticleId = (id) => {
           return res;
         }
       });
-      if (newResult.length === 0) {
-        return Promise.reject({ status: 404, msg: "article not found!" });
+      if (newResult.length === 0 || newResult === []) {
+        return (
+          Promise.reject({ status: 404, msg: "article not found!" }) ||
+          Promise.reject({ status: 400, msg: "invalid input" })
+        );
       } else {
         return newResult.map((commentCount) => {
           return {

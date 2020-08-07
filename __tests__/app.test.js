@@ -104,15 +104,15 @@ describe("/api", () => {
           expect(msg).toBe("article not found!");
         });
     });
-    // test("GET: 400 for invalid article input", () => {
-    //   return request(app)
-    //     .get("/api/articles/notAnId")
-    //     .expect(400)
-    //     .then(({ body }) => {
-    //       console.log(body);
-    //       expect(body.msg).toBe("invalid input");
-    //     });
-    // });
+    test("GET: 400 for invalid article input", () => {
+      return request(app)
+        .get("/api/articles/notAnId")
+        .expect(400)
+        .then(({ body }) => {
+          console.log(body);
+          expect(body.msg).toBe("invalid input");
+        });
+    });
     test("PATCH: 200 responds with new Votes key which indicates what the votes is to be updated by", () => {
       return request(app)
         .patch("/api/articles/1")

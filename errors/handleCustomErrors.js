@@ -10,6 +10,8 @@ exports.handlePSQLErrors = (err, req, res, next) => {
     res.status(400).send({ msg: "Bad Request!" } || { msg: err.msg });
   else if (err.code === "23503") {
     res.status(404).send({ msg: "invalid user" });
+  } else if (err.code === "42703") {
+    res.status(400).send({ msg: "invalid input" });
   } else next(err);
 };
 exports.handle405Errors = (req, res, next) => {
