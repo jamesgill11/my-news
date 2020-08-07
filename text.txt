@@ -1,0 +1,6 @@
+42803 - error: select * from "comments" left join "articles" on "comments"."article_id" = "articles"."article_id" group by "articles"."article_id" - column "comments.comment_id" must appear in the GROUP BY clause or be used in an aggregate function
+
+
+42703 -   error: insert into "comments" ("body", "username") values ($1, $2) returning * - column "username" of relation "comments" does not exist
+
+23502 - error: insert into "comments" ("author", "body") values ($1, $2) returning * - null value in column "article_id" violates not-null constraint

@@ -10,7 +10,13 @@
     "migrate-rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "seed-test": "npm run setup-dbs && NODE_ENV=test knex seed:run",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "unlock": "NODE_ENV=test knex migrate:unlock"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-sorted"
+    ]
   },
   "repository": {
     "type": "git",
@@ -23,10 +29,14 @@
     "url": "https://github.com/northcoders/be-nc-news/issues"
   },
   "homepage": "https://github.com/northcoders/be-nc-news#readme",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "devDependencies": {
     "jest": "^26.2.2",
+    "jest-sorted": "^1.0.6",
     "knex": "^0.21.2",
-    "pg": "^8.3.0"
+    "pg": "^8.3.0",
+    "supertest": "^4.0.2"
   }
 }
