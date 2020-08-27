@@ -49,13 +49,13 @@ describe("/api", () => {
         .expect(200)
         .then((res) => {
           expect(res.body.user).toEqual(
-            expect.arrayContaining([
-              expect.objectContaining({
-                username: expect.any(String),
-                name: expect.any(String),
-                avatar_url: expect.any(String),
-              }),
-            ])
+            // expect.arrayContaining([
+            expect.objectContaining({
+              username: expect.any(String),
+              name: expect.any(String),
+              avatar_url: expect.any(String),
+            })
+            // ])
           );
         });
     });

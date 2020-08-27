@@ -4,19 +4,22 @@ exports.fetchArticlesByArticleId = (id) => {
   return db
     .select("articles.*")
     .from("articles")
+    .where("article_id", "=", id)
     .leftJoin("comments", "articles.article_id", "comments.article_id")
     .groupBy("articles.article_id")
     .count("comments.article_id", { as: "comment_count" })
     .then((result) => {
+      console.log(result);
+
       const newResult = result.filter((res) => {
         if (res.article_id === Number(id)) {
-          return res;
+          return { res };
         }
       });
       if (newResult.length === 0 || newResult === []) {
         return (
           Promise.reject({ status: 404, msg: "article not found!" }) ||
-          Promise.reject({ status: 400, msg: "invalid input" })
+          Promise.reject({ status: 400, msg: "Bad Request!" })
         );
       } else {
         return newResult.map((commentCount) => {
@@ -29,7 +32,7 @@ exports.fetchArticlesByArticleId = (id) => {
     });
 };
 
-exports.patchVotes = (article_id, votes) => {
+exports.patchVotes = (article_id, votes = 0) => {
   return db("articles")
     .where("article_id", "=", article_id)
     .increment("votes", votes)
