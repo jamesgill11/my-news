@@ -1,9 +1,11 @@
 const ENV = process.env.NODE_ENV || "development";
 // const data = { test, development, production: development };
 
+const development = require("./development-data");
+const test = require("./test-data");
 const data = {
-  development: require("./development-data"),
-  test: require("./test-data"),
+  development,
+  test,
   production: development,
 };
 

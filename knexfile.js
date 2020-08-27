@@ -1,4 +1,4 @@
-// const ENV = process.env.NODE_ENV || "development";
+const ENV = process.env.NODE_ENV || "development";
 const { DB_URL } = process.env;
 
 const baseConfig = {
@@ -40,4 +40,4 @@ console.log = (...args) => {
   if (!/FsMigrations/.test(args[0])) log(...args);
 };
 
-module.exports = { ...customConfig, ...baseConfig };
+module.exports = { ...customConfig[ENV], ...baseConfig };
