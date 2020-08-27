@@ -12,7 +12,11 @@
     "seed-test": "npm run setup-dbs && NODE_ENV=test knex seed:run",
     "test": "jest --watch",
     "unlock": "NODE_ENV=test knex migrate:unlock",
-    "dev": "nodemon listen.js"
+    "dev": "nodemon listen.js",
+    "seed:prod": "NODE_ENV=production DB_URL=$(heroku config:get DATABASE_URL) knex seed:run",
+    "migrate-latest:prod": "NODE_ENV=production DB_URL=$(heroku config:get DATABASE_URL) knex migrate:latest",
+    "migrate-rollback:prod": "NODE_ENV=production DB_URL=$(heroku config:get DATABASE_URL) knex migrate:rollback",
+    "start": "node listen.js"
   },
   "jest": {
     "setupFilesAfterEnv": [
