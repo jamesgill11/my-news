@@ -9,7 +9,8 @@ exports.fetchUserByUsername = (username) => {
       if (user.length === 0) {
         return Promise.reject({ status: 404, msg: "user not found!" });
       } else {
-        return Object.assign({ ...user });
+        return user;
+        // Object.assign(([user[user]] = { ...user }));
       }
     });
 };

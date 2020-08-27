@@ -8,7 +8,7 @@ const {
 } = require("../controllers/articles.controller");
 const { handle405Errors } = require("../errors/handleCustomErrors");
 
-articlesRouter.get("/", sendAllArticles).all(handle405Errors);
+articlesRouter.route("/").get(sendAllArticles).all(handle405Errors);
 articlesRouter.route("/:article_id").get(sendArticles).patch(updateVotes);
 articlesRouter
   .route("/:article_id/comments")

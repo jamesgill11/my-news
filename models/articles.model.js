@@ -4,25 +4,19 @@ exports.fetchArticlesByArticleId = (id) => {
   return db
     .select("articles.*")
     .from("articles")
-    .where("article_id", "=", id)
+    .where("articles.article_id", "=", id)
     .leftJoin("comments", "articles.article_id", "comments.article_id")
     .groupBy("articles.article_id")
     .count("comments.article_id", { as: "comment_count" })
     .then((result) => {
       console.log(result);
-
-      const newResult = result.filter((res) => {
-        if (res.article_id === Number(id)) {
-          return { res };
-        }
-      });
-      if (newResult.length === 0 || newResult === []) {
+      if (result.length === 0 || result === []) {
         return (
           Promise.reject({ status: 404, msg: "article not found!" }) ||
           Promise.reject({ status: 400, msg: "Bad Request!" })
         );
       } else {
-        return newResult.map((commentCount) => {
+        return result.map((commentCount) => {
           return {
             ...commentCount,
             comment_count: Number(commentCount.comment_count),

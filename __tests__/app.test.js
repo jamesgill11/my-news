@@ -49,13 +49,13 @@ describe("/api", () => {
         .expect(200)
         .then((res) => {
           expect(res.body.user).toEqual(
-            // expect.arrayContaining([
-            expect.objectContaining({
-              username: expect.any(String),
-              name: expect.any(String),
-              avatar_url: expect.any(String),
-            })
-            // ])
+            expect.arrayContaining([
+              expect.objectContaining({
+                username: expect.any(String),
+                name: expect.any(String),
+                avatar_url: expect.any(String),
+              }),
+            ])
           );
         });
     });
@@ -71,7 +71,7 @@ describe("/api", () => {
   describe("/articles", () => {
     test("GET: 200 responds with an article by article id", () => {
       return request(app)
-        .get("/api/articles/1")
+        .get("/api/articles/2")
         .expect(200)
         .then((res) => {
           expect(res.body.articles).toEqual(
