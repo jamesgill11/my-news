@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+const cors = require("cors");
 const app = express();
 const apiRouter = require("./routes/api.router");
 const {
@@ -9,12 +9,9 @@ const {
   handle405Errors,
 } = require("./errors/handleCustomErrors");
 
-app.use(express.static(path.join(__dirname, "build")));
+app.use(cors());
 
 app.use(express.json());
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 
 app.use("/api", apiRouter);
 
