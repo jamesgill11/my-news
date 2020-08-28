@@ -8,6 +8,8 @@ const {
   handle405Errors,
 } = require("./errors/handleCustomErrors");
 
+app.use(express.static(path.join(__dirname, "build")));
+
 app.use(express.json());
 
 app.use("/api", apiRouter);
