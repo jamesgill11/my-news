@@ -5,7 +5,7 @@ const {
   fetchCommentsByArticleId,
   fetchAllArticles,
 } = require("../models/articles.model");
-
+console.log("in articles");
 exports.sendArticles = (req, res, next) => {
   const { article_id } = req.params;
   fetchArticlesByArticleId(article_id)
